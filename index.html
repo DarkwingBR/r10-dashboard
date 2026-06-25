@@ -212,7 +212,7 @@ const PIPELINES = {
   r10: {
     label: 'R10 Academy', sub: 'Funil de atendimento aos pais · CRM Trello',
     sources: {
-      funil:      { url: gviz('gid=610213254'),    cols:['Ordem','Etapa','Grupo','Total','Planilha','Trafego'], demo: DEMO_R10.funil, valid: rows => rows.some(r => /^\d+$/.test(String(r.Ordem||'').trim())) },
+      funil:      { url: gviz('sheet=Funil'),       cols:['Ordem','Etapa','Grupo','Total','Planilha','Trafego'], demo: DEMO_R10.funil, valid: rows => rows.some(r => /^\d+$/.test(String(r.Ordem||'').trim())) },
       escolinhas: { url: gviz('sheet=Escolinhas'),  cols:['Escolinha','Total'],                                  demo: DEMO_R10.escolinhas },
       snapshots:  { url: gviz('sheet=Snapshots'),   cols:['Data','Total','Matriculados','Perdidos'],             demo: DEMO_R10.snapshots },
       motivos:    { url: gviz('sheet=Motivos'),     cols:['Motivo','Total'],                                     demo: DEMO_R10.motivos },
