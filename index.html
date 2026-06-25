@@ -325,7 +325,7 @@ function renderR10(d) {
     </div>`;
 
   destroyCharts();
-  drawFunil('chFunil', funil);
+  drawFunil('chFunil', funil, (r, i) => r.Grupo === 'Ganho' ? C.verde : FUNIL_CORES[i % FUNIL_CORES.length]);
   charts.origem = new Chart(document.getElementById('chOrigem'), {
     type:'doughnut',
     data:{ labels:['Planilha (escolinha)','Tráfego (Meta Ads)'], datasets:[{ data:[planilha,trafego], backgroundColor:[C.cyan,C.amarelo], borderWidth:0, hoverOffset:10 }] },
