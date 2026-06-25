@@ -239,7 +239,12 @@ function loadCsv(src) {
       download: true, header: true, skipEmptyLines: true,
       complete: res => {
         const rows = res.data || [];
-        const ok = rows.length > 0 && src.cols.every(c => c in rows[0]) && (!src.valid || src.valid(rows));
+        // valida pelo CABEÇALHO da aba (res.meta.fields), não pela 1ª linha.
+        // Assim uma aba existente porém VAZIA (ex: Motivos sem tags) renderiza
+        // vazia em vez de cair no dado de exemplo.
+        const fields = (res.meta && res.meta.fields) || (rows[0] ? Object.keys(rows[0]) : []);
+        const headerOk = src.cols.every(c => fields.indexOf(c) >= 0);
+        const ok = headerOk && (!src.valid || src.valid(rows));
         resolve(ok ? rows : (src.demo || null));
       },
       error: () => resolve(src.demo || null),
